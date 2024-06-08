@@ -9,7 +9,7 @@ class ClientDatabase:
         if self.settings.database_backend == "redis":
             from hivemind_core.plugins.database.redis import clients
 
-            self.db = clients.Clients()
+            self.db = clients.Clients(self.settings)
 
     def __repr__(self) -> str:
         return str(self.db.get_all_clients())

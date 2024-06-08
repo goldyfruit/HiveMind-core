@@ -8,8 +8,8 @@ from redis.commands.search.query import Query
 
 
 class Clients:
-    def __init__(self):
-        self.r = redis.Redis(host="localhost", port=6379)
+    def __init__(self, settings):
+        self.r = redis.Redis(host=settings.database_host, port=settings.database_port)
         self.rs = self.r.ft("idx:clients")
 
     @cast_to_client_obj()

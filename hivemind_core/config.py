@@ -15,7 +15,7 @@ class Settings:
 
     database_backend: str = config_db.get("backend", "redis")
     database_host: str = config_db.get("host", "127.0.0.1")
-    ws_conn_timeout: int = config_db.get("port", 6379)
+    database_port: int = config_db.get("port", 6379)
 
 
 @lru_cache()
