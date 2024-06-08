@@ -1,11 +1,15 @@
-from hivemind_core.plugins.database.redis import clients
 from hivemind_core.plugins.database.utils import Client
 from typing import Optional, List, Dict, Any
+from hivemind_core.config import get_settings
 
 
 class ClientDatabase:
     def __init__(self):
-        self.db = clients.Clients()
+        self.settings = get_settings()
+        if self.settings.database_backend == "redis":
+            from hivemind_core.plugins.database.redis import clients
+
+            self.db = clients.Clients()
 
     def __repr__(self) -> str:
         return str(self.db.get_all_clients())

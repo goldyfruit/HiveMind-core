@@ -180,12 +180,6 @@ def list_clients():
     type=str,
     default="hivemind",
 )
-@click.option(
-    "--backend",
-    help="HiveMind database backend",
-    type=str,
-    default="json",
-)
 def listen(
     ovos_bus_address: str,
     ovos_bus_port: int,
@@ -194,7 +188,6 @@ def listen(
     ssl: bool,
     cert_dir: str,
     cert_name: str,
-    backend: str,
 ):
     from hivemind_core.service import HiveMindService
 
@@ -211,13 +204,8 @@ def listen(
         "cert_name": cert_name,
     }
 
-    database_config = {
-        "backend": backend,
-    }
-
     service = HiveMindService(
-        ovos_bus_config=ovos_bus_config, websocket_config=websocket_config, database_config=database_config
-    )
+        ovos_bus_config=ovos_bus_config, websocket_config=websocket_config)
     service.run()
 
 

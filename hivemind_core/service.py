@@ -192,7 +192,6 @@ class HiveMindService:
         stopping_hook: Callable = on_stopping,
         websocket_config: Optional[Dict[str, Any]] = None,
         ovos_bus_config: Optional[Dict[str, Any]] = None,
-        database_config: Optional[Dict[str, Any]] = None,
         protocol=HiveMindListenerProtocol,
         bus=None,
         ws_handler=MessageBusEventHandler,
@@ -200,9 +199,6 @@ class HiveMindService:
         websocket_config = websocket_config or Configuration().get(
             "hivemind_websocket", {}
         )
-        database_config = database_config or Configuration().get(
-            "hivemind_database_config", {}
-        )        
         callbacks = StatusCallbackMap(
             on_started=started_hook,
             on_alive=alive_hook,
